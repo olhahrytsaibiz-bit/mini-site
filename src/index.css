@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 15% 12%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 15% 16%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 15% 14%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 158 64% 52%;
+    --primary-foreground: 220 15% 12%;
+
+    --secondary: 220 15% 20%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 220 15% 20%;
+    --muted-foreground: 220 10% 65%;
+
+    --accent: 43 96% 56%;
+    --accent-foreground: 220 15% 12%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 15% 25%;
+    --input: 220 15% 25%;
+    --ring: 158 64% 52%;
+
+    --radius: 1rem;
+
+    --luxury-gold: 43 96% 56%;
+    --luxury-emerald: 158 64% 52%;
+    --luxury-dark: 220 15% 8%;
+    
+    --shadow-glow: 0 0 60px hsl(var(--primary) / 0.15);
+    --shadow-card: 0 10px 40px -10px hsl(0 0% 0% / 0.5);
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+  
+  .glow-effect {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .card-shadow {
+    box-shadow: var(--shadow-card);
+  }
+
+  .my-card {
+    background-color: #000b20;
+  }
+
+  .bg-gift {
+    background-image:
+      url('/gift.png'),
+      repeating-linear-gradient(45deg, #000000, transparent 100px),
+      linear-gradient(45deg, #ff0000, transparent 100px),
+      linear-gradient(320deg, #ff0000ab, transparent 100px);
+    background-size: 150px, auto, auto, auto;
+    background-repeat: no-repeat;
+    background-position: center 180px, center, center, center;
+  }
+}
