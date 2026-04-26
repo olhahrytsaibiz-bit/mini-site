@@ -17,12 +17,12 @@ export const HeroSection = () => {
       
       <div className="container mx-auto px-4 relative z-10 min-h-screen">
         {/* Desktop Layout */}
-        <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center">
+        <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-start">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-8 pt-8 xl:pt-16"
           >
             <div className="inline-block max-w-xl px-4 py-2 bg-card/50 rounded-lg border border-border">
               <span className="text-sm md:text-base uppercase tracking-widest text-muted-foreground font-medium leading-relaxed">
@@ -31,9 +31,9 @@ export const HeroSection = () => {
             </div>
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              <span className="text-[#cbba9c]">ТОЧКА</span>
+              <span className="text-gradient">ТОЧКА</span>
               <br />
-              <span className="text-[#cbba9c]">ВІДЛІКУ</span>
+              <span className="text-gradient">ВІДЛІКУ</span>
             </h1>
             
             <div className="space-y-4">
@@ -75,7 +75,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            className="relative -mt-16 xl:-mt-24"
           >
             <div className="relative glow-effect rounded-2xl overflow-hidden">
               <img
@@ -120,9 +120,9 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl sm:text-5xl font-bold leading-tight text-left mb-4 -z-10"
           >
-            <span className="text-[#cbba9c]">ТОЧКА</span>
+            <span className="text-gradient">ТОЧКА</span>
             <br />
-            <span className="text-[#cbba9c]">ВІДЛІКУ</span>
+            <span className="text-gradient">ВІДЛІКУ</span>
           </motion.h1>
           
           <motion.div

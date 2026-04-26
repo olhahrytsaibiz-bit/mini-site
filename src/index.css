@@ -70,7 +70,7 @@ All colors MUST be HSL.
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+    color: #cbba9c;
   }
   
   .glow-effect {
