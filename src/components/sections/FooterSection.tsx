@@ -23,9 +23,9 @@ export const FooterSection = () => {
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-gradient">Фінансова свобода</h3>
+              <h3 className="text-2xl font-bold text-gradient">Точка відліку</h3>
               <p className="text-muted-foreground">
-                Міні-курс з персональним розбором від підприємиці інвесторки
+                Міні-курс для тих, хто заробляє — але гроші не залишаються
               </p>
             </div>
             

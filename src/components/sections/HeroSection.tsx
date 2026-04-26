@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Users } from "lucide-react";
 import speakerImage from "@/assets/speaker-1.png";
 import speakerMobileImage from "@/assets/speaker-mobile.png";
 import money from "@/assets/money.png";
@@ -27,29 +26,20 @@ export const HeroSection = () => {
           >
             <div className="inline-block">
               <span className="text-sm md:text-base uppercase tracking-widest text-muted-foreground font-medium px-4 py-2 bg-card/50 rounded-lg border border-border">
-                Міні-курс з персональним розбором від підприємиці інвесторки
+                Міні-курс для тих, хто заробляє — але гроші не залишаються
               </span>
             </div>
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              <span className="text-gradient">ФІНАНСОВА</span>
+              <span className="text-gradient">ТОЧКА</span>
               <br />
-              <span className="text-gradient">СВОБОДА</span>
+              <span className="text-gradient">ВІДЛІКУ</span>
             </h1>
             
             <div className="space-y-4">
               <p className="text-lg md:text-xl text-muted-foreground">
-                Досить втрачати гроші!
-                <br />
-                Опануй систему контролю над фінансами та почни будувати свій капітал
+                Фінансова система, де гроші стають капіталом, а не зникають
               </p>
-            </div>
-            
-            <div className="inline-flex items-center gap-3 bg-card/80 backdrop-blur-sm px-4 py-3 rounded-lg border border-border">
-              <Users className="w-6 h-6 text-muted-foreground" />
-              <span className="text-sm">
-                Курс вже пройшло <strong className="text-foreground">понад 200 учнів</strong>
-              </span>
             </div>
             
             <div className="flex items-center gap-4">
@@ -119,7 +109,7 @@ export const HeroSection = () => {
                   bg-card/50
                   block"
               >
-                Міні-курс з персональним розбором від підприємиці інвесторки
+                Міні-курс для тих, хто заробляє — але гроші не залишаються
               </span>
             </div>
           </motion.div>
@@ -130,9 +120,9 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl sm:text-5xl font-bold leading-tight text-left mb-4 -z-10"
           >
-            <span className="text-gradient">ФІНАНСОВА</span>
+            <span className="text-gradient">ТОЧКА</span>
             <br />
-            <span className="text-accent">СВОБОДА</span>
+            <span className="text-accent">ВІДЛІКУ</span>
           </motion.h1>
           
           <motion.div
@@ -142,30 +132,12 @@ export const HeroSection = () => {
             className="text-left mb-4"
           >
             <p className="text-base text-muted-foreground">
-              Досить втрачати гроші!
+              Фінансова система,
               <br />
-              Опануй систему контролю
+              де гроші стають капіталом,
               <br />
-              над фінансами та почни
-              <br />
-              будувати свій капітал
+              а не зникають
             </p>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            className="flex justify-start mb-4 mt-16"
-          >
-            <div className="inline-flex items-center gap-4 bg-[#2f2f2f] backdrop-blur-sm px-4 py-3 rounded-sm border border-[#3d3535] shadow-[0_20px_30px_-10px_#000]">
-              <Users className="w-6 h-6" />
-              <span className="text-sm text-center">
-                Курс вже пройшло
-                <br />
-                <strong className="text-foreground">понад 200 учнів</strong>
-              </span>
-            </div>
           </motion.div>
           
           <motion.div

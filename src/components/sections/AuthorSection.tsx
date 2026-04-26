@@ -3,10 +3,10 @@ import { TrendingUp, Award, Users, Shield } from "lucide-react";
 import speakerImage from "@/assets/speaker-2.jpg";
 
 const achievements = [
-  { icon: TrendingUp, text: "Інвестую з 2007 року (крипта, фондовий ринок, та інші активи)" },
-  { icon: Award, text: "За цей час я втратила понад 100 000$, зробила болючі помилки і повернула ці гроші назад, вже усвідомлено" },
-  { icon: Users, text: "Працювала над портфелями людей, чий капітал сягає мільйонів доларів" },
-  { icon: Shield, text: "Допомагаю друзям та підприємцям формувати інвестиційні портфелі: від ETF та фондового ринку до криптовалют та альтернативних активів" },
+  { icon: TrendingUp, text: "Інвестую з 2007 року — пройшла через крипту, фондовий ринок, нерухомість і альтернативні активи" },
+  { icon: Award, text: "Втратила понад 100 000$ — не через незнання інструментів, а через відсутність системи. Повернула — вже усвідомлено" },
+  { icon: Users, text: "Пройшла шлях від «заробляю і не розумію куди йдуть гроші» до власної фінансової системи, яка працює незалежно від доходу" },
+  { icon: Shield, text: "Допомагала формувати портфелі людям з капіталом від сотень тисяч до мільйонів доларів" },
 ];
 
 export const AuthorSection = () => {
@@ -40,7 +40,7 @@ export const AuthorSection = () => {
               <h2 className="text-4xl md:text-5xl font-bold text-gradient">
                 Ольга Грицай
               </h2>
-              <p className="text-xl mt-2 text-primary">Я підприємиця та інвесторка</p>
+              <p className="text-xl mt-2 text-primary">Підприємиця. Інвесторка. 20+ років у фінансах</p>
             </div>
             
             <div className="space-y-4">
@@ -61,28 +61,19 @@ export const AuthorSection = () => {
             
             <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-xl space-y-4">
               <p className="text-lg italic">
-                Я не народилась з фінансовою освітою
-                <br />
-                Я створила її собі сама — через досвід, ризики, втрати і перемоги
+                Я вивчала фінанси роками — 20+ курсів, десятки книг, власний досвід у бізнесі та інвестиціях на трьох континентах.
+              </p>
+              <p className="text-lg italic">
+                Але найголовніше я зрозуміла не з курсів. А через власні втрати.
               </p>
               <p className="text-lg font-semibold">
-                І тепер моя мета проста:
+                Гроші не залишаються — не тому що їх мало.
                 <br />
-                <span className="text-primary">
-                  Навчити тебе контролювати гроші, ще до того, як ти почнеш їх інвестувати
-                </span>
+                <span className="text-primary">А тому що немає системи.</span>
               </p>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2">
-                  <span className="text-primary">•</span> Без складних термінів
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-primary">•</span> Без страху зробити помилку
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-primary">•</span> Без відчуття, що "це не для мене"
-                </li>
-              </ul>
+              <p className="text-lg italic">
+                Саме її я даю в «Точці відліку».
+              </p>
             </div>
           </motion.div>
         </div>
