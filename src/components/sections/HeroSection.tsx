@@ -24,16 +24,16 @@ export const HeroSection = () => {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            <div className="inline-block">
-              <span className="text-sm md:text-base uppercase tracking-widest text-muted-foreground font-medium px-4 py-2 bg-card/50 rounded-lg border border-border">
+            <div className="inline-block max-w-xl px-4 py-2 bg-card/50 rounded-lg border border-border">
+              <span className="text-sm md:text-base uppercase tracking-widest text-muted-foreground font-medium leading-relaxed">
                 Міні-курс для тих, хто заробляє — але гроші не залишаються
               </span>
             </div>
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              <span className="text-gradient">ТОЧКА</span>
+              <span className="text-[#cbba9c]">ТОЧКА</span>
               <br />
-              <span className="text-gradient">ВІДЛІКУ</span>
+              <span className="text-[#cbba9c]">ВІДЛІКУ</span>
             </h1>
             
             <div className="space-y-4">
@@ -120,9 +120,9 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl sm:text-5xl font-bold leading-tight text-left mb-4 -z-10"
           >
-            <span className="text-gradient">ТОЧКА</span>
+            <span className="text-[#cbba9c]">ТОЧКА</span>
             <br />
-            <span className="text-accent">ВІДЛІКУ</span>
+            <span className="text-[#cbba9c]">ВІДЛІКУ</span>
           </motion.h1>
           
           <motion.div

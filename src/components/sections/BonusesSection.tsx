@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
-import { Gift, Video, FileText, Filter } from "lucide-react";
+import { Gift, FileText, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CountdownTimer } from "@/components/CountdownTimer";
 
 const bonuses = [
   {
-    icon: Video,
+    icon: FileText,
     number: 1,
-    title: "Відеоурок: «Як говорити з дітьми про гроші»",
+    title: "Гайд «Як говорити з дітьми про гроші»",
+    subtitle: "",
     points: [
       "Як формувати у дитини здорові фінансові звички",
       "Фрази, які ламають фінансове мислення (і чим їх замінити)",
@@ -19,6 +20,7 @@ const bonuses = [
     icon: FileText,
     number: 2,
     title: "Персональний фінансовий розбір",
+    subtitle: "",
     points: [
       "Після проходження курсу ти зможеш пройти міні-діагностику",
       "Я покажу, де ти втрачаєш гроші зараз і що треба змінити в першу чергу",
@@ -26,13 +28,16 @@ const bonuses = [
     result: "ти отримуєш чітке розуміння, які конкретні кроки робити далі",
   },
   {
-    icon: Filter,
+    icon: Sparkles,
     number: 3,
-    title: "«Антиімпульсний фінансовий фільтр» (PDF + чек-лист на телефон)",
+    title: "Фінансовий аудит за 5 хвилин",
+    subtitle: "ChatGPT-промпт з 7 запитань, який покаже, де саме зараз губляться твої гроші",
     points: [
-      "Готовий інструмент, який за 30 секунд зупиняє 90% імпульсивних покупок",
+      "Готовий інструмент — просто скопіюй і встав у ChatGPT",
+      "Отримаєш персональний розбір своєї фінансової ситуації",
+      "Займає 5 хвилин, працює без реєстрації та підписок",
     ],
-    result: "зупиняє 90% імпульсивних покупок",
+    result: "ти побачиш свою точку А ще до початку курсу",
   },
 ];
 
@@ -80,6 +85,11 @@ export const BonusesSection = () => {
                       <div>
                         <span className="text-accent font-bold text-lg">⭐ БОНУС №{bonus.number}</span>
                         <h3 className="text-xl md:text-2xl font-bold mt-2">{bonus.title}</h3>
+                        {bonus.subtitle && (
+                          <p className="text-base text-muted-foreground mt-2 italic">
+                            {bonus.subtitle}
+                          </p>
+                        )}
                       </div>
                     </div>
                     

@@ -13,7 +13,14 @@ export const CountdownTimer = () => {
     let calculatedStartTime: number;
     
     if (startTime) {
-      calculatedStartTime = parseInt(startTime, 10);
+      const stored = parseInt(startTime, 10);
+      // If the stored timer already expired (or is invalid), restart it
+      if (isNaN(stored) || now - stored >= TIMER_DURATION) {
+        calculatedStartTime = now;
+        localStorage.setItem("timerStartTime", calculatedStartTime.toString());
+      } else {
+        calculatedStartTime = stored;
+      }
     } else {
       calculatedStartTime = now;
       localStorage.setItem("timerStartTime", calculatedStartTime.toString());
