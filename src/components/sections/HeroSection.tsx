@@ -22,7 +22,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8 pt-8 xl:pt-16"
+            className="space-y-8 pt-20 xl:pt-28"
           >
             <div className="inline-block max-w-xl px-4 py-2 bg-card/50 rounded-lg border border-border">
               <span className="text-sm md:text-base uppercase tracking-widest text-muted-foreground font-medium leading-relaxed">
@@ -75,7 +75,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative -mt-16 xl:-mt-24"
+            className="relative -mt-24 xl:-mt-32"
           >
             <div className="relative glow-effect rounded-2xl overflow-hidden">
               <img
