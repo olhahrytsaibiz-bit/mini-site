@@ -124,13 +124,13 @@ export const HeroSection = () => {
             }}
             className="
               absolute
-              top-20
-              -right-6
+              top-28
+              -right-4
               pointer-events-none
               -z-10
               overflow-hidden
-              w-[62%]
-              h-[58%]
+              w-[68%]
+              h-[72%]
               bg-contain
               bg-[position:center_top]
               bg-no-repeat"
@@ -140,7 +140,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl font-bold leading-tight text-left mt-6 mb-3 max-w-[55%]"
+            className="text-4xl sm:text-5xl font-bold leading-tight text-left mt-20 mb-3 max-w-[55%]"
           >
             <span className="text-gradient">ТОЧКА</span>
             <br />
