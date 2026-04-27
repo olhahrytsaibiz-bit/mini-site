@@ -114,11 +114,33 @@ export const HeroSection = () => {
             </div>
           </motion.div>
           
+          {/* Photo — top right, head level with title */}
+          <motion.div
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            style={{
+              backgroundImage: `url(${speakerMobileImage})`
+            }}
+            className="
+              absolute
+              top-20
+              -right-6
+              pointer-events-none
+              -z-10
+              overflow-hidden
+              w-[62%]
+              h-[58%]
+              bg-contain
+              bg-[position:center_top]
+              bg-no-repeat"
+          />
+          
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl sm:text-5xl font-bold leading-tight text-left mb-4 -z-10"
+            className="text-4xl sm:text-5xl font-bold leading-tight text-left mt-6 mb-3 max-w-[55%]"
           >
             <span className="text-gradient">ТОЧКА</span>
             <br />
@@ -129,42 +151,15 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-left mb-4"
+            className="text-left mb-4 max-w-[55%]"
           >
-            <p className="text-base text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               Фінансова система,
               <br />
               де гроші стають капіталом,
               <br />
               а не зникають
             </p>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            style={{
-              backgroundImage: `url(${speakerMobileImage})`
-            }}
-            className="
-              absolute
-              bottom-0
-              -right-14
-              pointer-events-none
-              -z-10
-              overflow-hidden
-              w-[77%]
-              h-[72%]
-              bg-contain
-              bg-[position:0_bottom]
-              bg-no-repeat"
-          >
-            {/* <img
-              src={speakerMobileImage}
-              alt="Ольга Грицай - автор курсу"
-              className="-mb-16"
-            /> */}
           </motion.div>
           
           <motion.div
