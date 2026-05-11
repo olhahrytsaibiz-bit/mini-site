@@ -1,78 +1,50 @@
 import { motion } from "framer-motion";
-import { TrendingUp, Award, Users, Shield } from "lucide-react";
-import speakerImage from "@/assets/speaker-2.jpg";
-
-const achievements = [
-  { icon: TrendingUp, text: "Інвестую з 2007 року — пройшла через крипту, фондовий ринок, нерухомість і альтернативні активи" },
-  { icon: Award, text: "Втратила понад 100 000$ — не через незнання інструментів, а через відсутність системи. Повернула — вже усвідомлено" },
-  { icon: Users, text: "Пройшла шлях від «заробляю і не розумію куди йдуть гроші» до власної фінансової системи, яка працює незалежно від доходу" },
-  { icon: Shield, text: "Допомагала формувати портфелі людям з капіталом від сотень тисяч до мільйонів доларів" },
-];
+import authorImage from "@/assets/speaker-2.jpg";
 
 export const AuthorSection = () => {
   return (
-    <section id="author" className="py-10">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+    <section id="author" className="bg-ivory-warm ink relative">
+      <div className="container mx-auto px-5 lg:px-10 py-16 lg:py-32">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="order-2 lg:order-1"
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 1 }}
+            className="relative"
           >
-            <img
-              src={speakerImage}
-              alt="Ольга Грицай"
-              className="w-full h-auto rounded-2xl card-shadow"
-            />
+            <div className="overflow-hidden rounded-sm">
+              <img
+                src={authorImage}
+                alt="Ольга Грицай"
+                className="w-full h-auto object-cover"
+              />
+            </div>
           </motion.div>
-          
+
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-8 order-1 lg:order-2"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.9, delay: 0.1 }}
+            className="space-y-7"
           >
-            <div>
-              <p className="text-lg text-muted-foreground mb-2">Мене звати</p>
-              <h2 className="text-4xl md:text-5xl font-bold text-gradient">
-                Ольга Грицай
-              </h2>
-              <p className="text-xl mt-2 text-primary">Підприємиця. Інвесторка. 20+ років у фінансах</p>
-            </div>
-            
-            <div className="space-y-4">
-              {achievements.map((achievement, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex gap-4 bg-card/50 p-4 rounded-lg border border-border"
-                >
-                  <achievement.icon className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <p className="text-sm md:text-base">{achievement.text}</p>
-                </motion.div>
-              ))}
-            </div>
-            
-            <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-xl space-y-4">
-              <p className="text-lg italic">
-                Я вивчала фінанси роками — 20+ курсів, десятки книг, власний досвід у бізнесі та інвестиціях на трьох континентах.
+            <h2 className="text-[30px] md:text-[40px] lg:text-[48px] font-semibold leading-[1.1] tracking-[-0.025em]">
+              Я теж колись думала, що проблема — просто в грошах
+            </h2>
+
+            <div className="space-y-5 text-base lg:text-lg leading-[1.7] ink-muted">
+              <p>
+                Я багато працювала, запускала бізнеси, заробляла, втрачала, починала заново.
               </p>
-              <p className="text-lg italic">
-                Але найголовніше я зрозуміла не з курсів. А через власні втрати.
+              <p>
+                І довгий час мені здавалося: якщо доходу стане більше — прийде й відчуття спокою.
               </p>
-              <p className="text-lg font-semibold">
-                Гроші не залишаються — не тому що їх мало.
-                <br />
-                <span className="text-primary">А тому що немає системи.</span>
+              <p>
+                Саме тому я почала вивчати: економіку, фінансові системи, інвестиції і поведінку людей навколо грошей.
               </p>
-              <p className="text-lg italic">
-                Саме її я даю в «Точці відліку».
+              <p className="ink">
+                І зрозуміла, як створити життя, де майбутнє не тримається лише на постійному заробітку.
               </p>
             </div>
           </motion.div>

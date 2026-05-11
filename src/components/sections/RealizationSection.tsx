@@ -1,0 +1,35 @@
+import { motion } from "framer-motion";
+
+export const RealizationSection = () => {
+  return (
+    <section id="realization" className="bg-ivory ink relative">
+      <div className="container mx-auto px-5 lg:px-10 py-16 lg:py-32 max-w-4xl">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8 }}
+          className="space-y-10"
+        >
+          <h2 className="text-[32px] md:text-[44px] lg:text-[56px] font-semibold leading-[1.1] tracking-[-0.025em] max-w-3xl">
+            Найнебезпечніше — новий рівень життя дуже швидко стає нормою
+          </h2>
+
+          <div className="space-y-6 text-lg lg:text-xl leading-[1.7] ink-muted max-w-2xl">
+            <p>
+              Одна думка: <span className="ink italic">«А так можна було?»</span>
+            </p>
+            <p>І все.</p>
+            <p>
+              Дорожчі звички, нові витрати, рівень життя, який тепер теж потрібно постійно
+              підтримувати.
+            </p>
+            <p>
+              Саме тому відчуття «мені просто треба трохи більше» може тривати роками.
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};

@@ -1,50 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/*
+  Design system — Точка відліку, premium editorial.
+  Dark base #0F1115 / second dark #171A20.
+  Light: ivory #F4F1EA / #ECE7DE / #E3DDD2.
+  Accent: muted gold #C8A96B.
+  All colors are stored as HSL triplets (for Tailwind theming).
 */
 
 @layer base {
   :root {
-    --background: 220 15% 12%;
-    --foreground: 0 0% 98%;
+    /* Dark base */
+    --background: 222 14% 7%;          /* #0F1115 */
+    --foreground: 35 33% 95%;          /* #F4F1EA on dark */
 
-    --card: 220 15% 16%;
-    --card-foreground: 0 0% 98%;
+    --card: 220 13% 11%;               /* #171A20 */
+    --card-foreground: 35 33% 95%;
 
-    --popover: 220 15% 14%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 220 13% 11%;
+    --popover-foreground: 35 33% 95%;
 
-    --primary: 158 64% 52%;
-    --primary-foreground: 220 15% 12%;
+    /* Muted gold as primary brand */
+    --primary: 38 47% 60%;             /* #C8A96B */
+    --primary-foreground: 222 14% 7%;
 
-    --secondary: 220 15% 20%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 220 13% 14%;
+    --secondary-foreground: 35 33% 95%;
 
-    --muted: 220 15% 20%;
-    --muted-foreground: 220 10% 65%;
+    --muted: 220 10% 22%;
+    --muted-foreground: 30 12% 70%;
 
-    --accent: 43 96% 56%;
-    --accent-foreground: 220 15% 12%;
+    --accent: 38 47% 60%;
+    --accent-foreground: 222 14% 7%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 35 33% 95%;
 
-    --border: 220 15% 25%;
-    --input: 220 15% 25%;
-    --ring: 158 64% 52%;
+    --border: 220 10% 22%;
+    --input: 220 10% 22%;
+    --ring: 38 47% 60%;
 
-    --radius: 1rem;
+    --radius: 0.75rem;
 
-    --luxury-gold: 43 96% 56%;
-    --luxury-emerald: 158 64% 52%;
-    --luxury-dark: 220 15% 8%;
-    
-    --shadow-glow: 0 0 60px hsl(var(--primary) / 0.15);
-    --shadow-card: 0 10px 40px -10px hsl(0 0% 0% / 0.5);
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Editorial palette tokens */
+    --ink-graphite: 222 14% 7%;        /* #0F1115 */
+    --ink-charcoal: 220 13% 11%;       /* #171A20 */
+    --ivory-1: 35 33% 95%;             /* #F4F1EA */
+    --ivory-2: 34 28% 90%;             /* #ECE7DE */
+    --ivory-3: 35 24% 85%;             /* #E3DDD2 */
+    --gold: 38 47% 60%;                /* #C8A96B */
+    --gold-muted: 38 35% 50%;
   }
 }
 
@@ -53,46 +62,88 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  }
-  
   html {
     scroll-behavior: smooth;
   }
-  
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+    letter-spacing: -0.005em;
+  }
+
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
   }
 }
 
 @layer utilities {
+  .text-gold {
+    color: #C8A96B;
+  }
+
+  .bg-graphite {
+    background-color: #0F1115;
+  }
+
+  .bg-charcoal {
+    background-color: #171A20;
+  }
+
+  .bg-ivory {
+    background-color: #F4F1EA;
+  }
+
+  .bg-ivory-warm {
+    background-color: #ECE7DE;
+  }
+
+  .bg-ivory-deep {
+    background-color: #E3DDD2;
+  }
+
+  .ink {
+    color: #0F1115;
+  }
+
+  .ink-muted {
+    color: #5C5A55;
+  }
+
+  /* Subtle grain overlay for dark editorial blocks */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 3px 3px;
+    mix-blend-mode: overlay;
+    opacity: 0.6;
+  }
+
+  /* Soft inner glow used on dark hero */
+  .soft-glow {
+    background-image: radial-gradient(
+      ellipse at 60% 40%,
+      rgba(200, 169, 107, 0.10) 0%,
+      rgba(15, 17, 21, 0) 60%
+    );
+  }
+
+  .glass-plate {
+    background-color: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Legacy alias — keeps any old reference working until removed */
   .text-gradient {
-    color: #cbba9c;
-  }
-  
-  .glow-effect {
-    box-shadow: var(--shadow-glow);
-  }
-  
-  .card-shadow {
-    box-shadow: var(--shadow-card);
-  }
-
-  .my-card {
-    background-color: #000b20;
-  }
-
-  .bg-gift {
-    background-image:
-      url('/gift.png'),
-      repeating-linear-gradient(45deg, #000000, transparent 100px),
-      linear-gradient(45deg, #ff0000, transparent 100px),
-      linear-gradient(320deg, #ff0000ab, transparent 100px);
-    background-size: 150px, auto, auto, auto;
-    background-repeat: no-repeat;
-    background-position: center 180px, center, center, center;
+    color: #C8A96B;
   }
 }

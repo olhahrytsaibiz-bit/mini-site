@@ -1,31 +1,25 @@
 import { Navigation } from "@/components/Navigation";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { ForWhomSection } from "@/components/sections/ForWhomSection";
+import { RealizationSection } from "@/components/sections/RealizationSection";
+import { MiniCourseSection } from "@/components/sections/MiniCourseSection";
 import { AuthorSection } from "@/components/sections/AuthorSection";
-import { StructureSection } from "@/components/sections/StructureSection";
-import { BonusesSection } from "@/components/sections/BonusesSection";
-import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
-import { WhatYouWillDoSection } from "@/components/sections/WhatYouWillDoSection";
-import { GuaranteeSection } from "@/components/sections/GuaranteeSection";
+import { SocialProofSection } from "@/components/sections/SocialProofSection";
 import { FAQSection } from "@/components/sections/FAQSection";
+import { FinalCtaSection } from "@/components/sections/FinalCtaSection";
 import { FooterSection } from "@/components/sections/FooterSection";
-import { FloatingCTA } from "@/components/FloatingCTA";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen bg-graphite text-foreground overflow-x-hidden">
       <Navigation />
       <HeroSection />
-      <ForWhomSection />
+      <RealizationSection />
+      <MiniCourseSection />
       <AuthorSection />
-      <StructureSection />
-      <BonusesSection />
-      <HowItWorksSection />
-      <WhatYouWillDoSection />
-      <GuaranteeSection />
+      <SocialProofSection />
       <FAQSection />
+      <FinalCtaSection />
       <FooterSection />
-      <FloatingCTA />
     </div>
   );
 };
