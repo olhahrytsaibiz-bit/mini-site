@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import speakerImage from "@/assets/speaker-1.png";
 import speakerMobileImage from "@/assets/speaker-mobile.png";
+import heroBg from "@/assets/hero-bg.jpg";
 
 export const HeroSection = () => {
   return (
@@ -9,8 +10,15 @@ export const HeroSection = () => {
       id="hero"
       className="relative overflow-hidden bg-graphite text-foreground"
     >
-      {/* Soft radial glow */}
-      <div className="absolute inset-0 soft-glow pointer-events-none" />
+      {/* Background image — city window + marble wall */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      />
+      {/* Dark overlay for legibility — stronger on left where text sits */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0F1115]/85 via-[#0F1115]/55 to-[#0F1115]/45 lg:from-[#0F1115]/80 lg:via-[#0F1115]/40 lg:to-[#0F1115]/25" />
+      {/* Vertical fade bottom to base color */}
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#0F1115]" />
       {/* Subtle grain */}
       <div className="grain absolute inset-0 pointer-events-none" />
 
