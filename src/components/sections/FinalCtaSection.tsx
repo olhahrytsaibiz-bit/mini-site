@@ -30,7 +30,7 @@ export const FinalCtaSection = () => {
           <div className="pt-4 flex justify-center">
             <Button
               size="lg"
-              className="text-base px-10 py-7 bg-[#C8A96B] hover:bg-[#b89656] text-[#0F1115] font-medium tracking-wide rounded-md"
+              className="text-base px-10 py-7 bg-gradient-to-b from-[#C7A55A] to-[#9C7E3A] hover:from-[#b89a55] hover:to-[#8b7032] shadow-[0_10px_30px_-12px_rgba(156,126,58,0.55)] text-[#0F1115] font-medium tracking-wide rounded-md"
               asChild
             >
               <a href="https://wayforpay.com" target="_blank" rel="noopener noreferrer">

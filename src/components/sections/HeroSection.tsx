@@ -74,7 +74,7 @@ export const HeroSection = () => {
         </div>
 
         {/* Mobile layout */}
-        <div className="lg:hidden relative flex flex-col min-h-[100svh] pt-12 pb-10">
+        <div className="lg:hidden relative flex flex-col min-h-[100svh] pt-20 pb-10">
           <motion.div
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
