@@ -5,6 +5,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import lightBgDesktop from "@/assets/light-bg-desktop.jpg";
+import lightBgMobile from "@/assets/light-bg-mobile.jpg";
 
 const faqs = [
   {
@@ -27,8 +29,18 @@ const faqs = [
 
 export const FAQSection = () => {
   return (
-    <section id="faq" className="bg-ivory ink relative">
-      <div className="container mx-auto px-5 lg:px-10 py-16 lg:py-28 max-w-3xl">
+    <section id="faq" className="bg-ivory ink relative overflow-hidden">
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat lg:hidden opacity-90"
+        style={{ backgroundImage: `url(${lightBgMobile})` }}
+      />
+      <div
+        className="absolute inset-0 hidden lg:block bg-cover bg-center bg-no-repeat opacity-90"
+        style={{ backgroundImage: `url(${lightBgDesktop})` }}
+      />
+      <div className="absolute inset-0 bg-ivory/65 lg:bg-ivory/55" />
+
+      <div className="container mx-auto px-5 lg:px-10 py-16 lg:py-28 max-w-3xl relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

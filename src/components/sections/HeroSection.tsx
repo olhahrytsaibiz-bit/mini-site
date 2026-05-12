@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import heroBgDesktop from "@/assets/hero-bg-desktop.jpg";
 
 export const HeroSection = () => {
   return (
@@ -9,12 +10,14 @@ export const HeroSection = () => {
       id="hero"
       className="relative overflow-hidden bg-graphite text-foreground"
     >
-      {/* Background image — full Olha composition.
-          Mobile: cover, anchored slightly right-top so face stays in view.
-          Desktop: contain by height, anchored right; left side stays dark. */}
+      {/* Background — mobile: vertical full-bleed; desktop: wider horizontal shot, anchored right */}
       <div
-        className="absolute inset-0 bg-cover bg-[position:62%_top] bg-no-repeat lg:bg-contain lg:bg-right lg:bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-[position:62%_12%] bg-no-repeat lg:hidden"
         style={{ backgroundImage: `url(${heroBg})` }}
+      />
+      <div
+        className="absolute inset-0 hidden lg:block bg-cover bg-right bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBgDesktop})` }}
       />
 
       {/* Left dark gradient overlay for text legibility */}
@@ -88,7 +91,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-[44px] sm:text-5xl font-semibold leading-[0.95] tracking-[-0.03em] text-left max-w-[58%]"
+            className="text-[44px] sm:text-5xl font-semibold leading-[0.95] tracking-[-0.03em] text-left max-w-[58%] mt-24"
           >
             <span className="block text-gold">Точка</span>
             <span className="block text-gold">відліку</span>
