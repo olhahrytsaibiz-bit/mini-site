@@ -74,12 +74,12 @@ export const HeroSection = () => {
         </div>
 
         {/* Mobile layout — text top, photo as full background */}
-        <div className="lg:hidden relative flex flex-col min-h-[100svh] pt-6 pb-8">
+        <div className="lg:hidden relative flex flex-col min-h-[100svh] pt-10 pb-10">
           <motion.div
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="glass-plate flex items-center gap-3 rounded-xl px-4 py-3 mb-4"
+            className="glass-plate flex items-center gap-3 rounded-xl px-4 py-3 mb-5"
           >
             <ShieldCheck className="w-4 h-4 text-[#C8A96B] flex-shrink-0" strokeWidth={1.8} />
             <span className="block text-[10px] uppercase tracking-[0.16em] text-foreground/90 font-medium leading-relaxed">
@@ -91,7 +91,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-[44px] sm:text-5xl font-semibold leading-[0.95] tracking-[-0.03em] text-left max-w-[58%] mt-2"
+            className="text-[44px] sm:text-5xl font-semibold leading-[0.95] tracking-[-0.03em] text-left max-w-[58%]"
           >
             <span className="block text-gold">Точка</span>
             <span className="block text-gold">відліку</span>
