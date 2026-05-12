@@ -12,7 +12,7 @@ export const HeroSection = () => {
     >
       {/* Background — mobile: vertical full-bleed; desktop: wider horizontal shot, anchored right */}
       <div
-        className="absolute inset-0 bg-cover bg-[position:62%_12%] bg-no-repeat lg:hidden"
+        className="absolute inset-0 bg-[length:auto_120%] bg-[position:62%_top] bg-no-repeat lg:hidden"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
       <div
