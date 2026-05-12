@@ -16,7 +16,7 @@ export const HeroSection = () => {
         style={{ backgroundImage: `url(${heroBg})` }}
       />
       <div
-        className="absolute inset-0 hidden lg:block bg-cover bg-right bg-no-repeat"
+        className="absolute inset-0 hidden lg:block bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBgDesktop})` }}
       />
 
