@@ -29,7 +29,7 @@ export const RealizationSection = () => {
             Найнебезпечніше — новий рівень життя дуже швидко стає нормою
           </h2>
 
-          <div className="space-y-6 text-lg lg:text-xl leading-[1.7] ink-muted max-w-2xl">
+          <div className="space-y-6 text-lg lg:text-xl leading-[1.75] ink-strong max-w-2xl">
             <p>
               Одна думка: <span className="ink italic">«А так можна було?»</span>
             </p>

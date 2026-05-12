@@ -33,7 +33,7 @@ export const AuthorSection = () => {
               Я теж колись думала, що проблема — просто в грошах
             </h2>
 
-            <div className="space-y-5 text-base lg:text-lg leading-[1.7] ink-muted">
+            <div className="space-y-5 text-base lg:text-lg leading-[1.7] ink-strong">
               <p>
                 Я багато працювала, запускала бізнеси, заробляла, втрачала, починала заново.
               </p>

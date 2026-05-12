@@ -57,17 +57,17 @@ export const FAQSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
-          <Accordion type="single" collapsible className="space-y-2">
+          <Accordion type="single" collapsible className="space-y-1">
             {faqs.map((item, i) => (
               <AccordionItem
                 key={i}
                 value={`faq-${i}`}
-                className="border-b border-black/10 last:border-b-0"
+                className="border-b border-black/15 last:border-b-0"
               >
-                <AccordionTrigger className="text-left text-lg lg:text-xl font-medium py-6 ink hover:no-underline">
+                <AccordionTrigger className="text-left text-lg lg:text-xl font-medium py-8 ink hover:no-underline">
                   {item.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-base lg:text-lg leading-[1.7] ink-muted pb-8 pr-8">
+                <AccordionContent className="text-base lg:text-lg leading-[1.75] ink-strong pb-10 pr-8">
                   {item.a}
                 </AccordionContent>
               </AccordionItem>

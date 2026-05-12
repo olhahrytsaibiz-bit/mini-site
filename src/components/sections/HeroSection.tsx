@@ -39,7 +39,7 @@ export const HeroSection = () => {
             className="space-y-10"
           >
             <div className="inline-flex items-center gap-3 rounded-xl px-5 py-3 max-w-[34rem] bg-[#171A20]/70 border border-[#C8A96B]/50 backdrop-blur-sm">
-              <Sparkles className="w-4 h-4 text-[#C8A96B] flex-shrink-0" strokeWidth={1.8} />
+              <Sparkles className="w-4 h-4 text-[#C8A96B] flex-shrink-0" strokeWidth={1.4} />
               <span className="text-[11px] xl:text-xs uppercase tracking-[0.18em] text-foreground/90 font-medium leading-relaxed">
                 Міні-курс для тих, хто заробляє — але гроші не залишаються
               </span>
@@ -54,7 +54,7 @@ export const HeroSection = () => {
               Фінансова система, де гроші стають капіталом, а не зникають.
             </p>
 
-            <div className="space-y-5 pt-2">
+            <div className="space-y-6 pt-2">
               <Button
                 size="lg"
                 className="group text-base px-8 py-7 bg-[#C8A96B] hover:bg-[#b89656] text-[#0F1115] font-medium tracking-wide rounded-md transition-all border border-[#E0C68A] shadow-[0_0_30px_-8px_rgba(200,169,107,0.6)]"
@@ -66,7 +66,7 @@ export const HeroSection = () => {
                 </a>
               </Button>
 
-              <p className="text-sm text-muted-foreground/80 italic">
+              <p className="text-sm text-foreground/70 pt-1">
                 При оплаті курсу сьогодні ти отримуєш бонусні матеріали!
               </p>
             </div>
@@ -74,14 +74,14 @@ export const HeroSection = () => {
         </div>
 
         {/* Mobile layout */}
-        <div className="lg:hidden relative flex flex-col min-h-[100svh] pt-10 pb-10">
+        <div className="lg:hidden relative flex flex-col min-h-[100svh] pt-12 pb-10">
           <motion.div
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="inline-flex items-center gap-3 rounded-xl px-4 py-3 mb-6 bg-[#171A20]/70 border border-[#C8A96B]/50 backdrop-blur-sm"
           >
-            <Sparkles className="w-4 h-4 text-[#C8A96B] flex-shrink-0" strokeWidth={1.8} />
+            <Sparkles className="w-4 h-4 text-[#C8A96B] flex-shrink-0" strokeWidth={1.4} />
             <span className="block text-[10px] uppercase tracking-[0.16em] text-foreground/95 font-medium leading-relaxed">
               Міні-курс для тих, хто заробляє — але гроші не залишаються
             </span>
@@ -114,7 +114,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="mt-auto space-y-3 pt-8"
+            className="mt-auto space-y-4 pt-10"
           >
             <Button
               size="lg"
@@ -127,7 +127,7 @@ export const HeroSection = () => {
               </a>
             </Button>
 
-            <p className="text-xs text-muted-foreground/80 italic text-center px-4">
+            <p className="text-xs text-foreground/65 text-center px-4 pt-2">
               При оплаті курсу сьогодні ти отримуєш бонусні матеріали!
             </p>
           </motion.div>
