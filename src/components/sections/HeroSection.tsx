@@ -74,7 +74,7 @@ export const HeroSection = () => {
         </div>
 
         {/* Mobile layout — badge top, title+subtitle centered, button bottom */}
-        <div className="lg:hidden relative flex flex-col min-h-[100svh] pt-8 pb-10">
+        <div className="lg:hidden relative flex flex-col min-h-[100svh] pt-12 pb-10">
           <motion.div
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -87,7 +87,7 @@ export const HeroSection = () => {
             </span>
           </motion.div>
 
-          <div className="flex-1 flex flex-col justify-center">
+          <div className="mt-10">
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -112,7 +112,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="space-y-4 pt-4"
+            className="mt-auto space-y-4 pt-4"
           >
             <Button
               size="lg"
