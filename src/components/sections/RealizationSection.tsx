@@ -1,9 +1,23 @@
 import { motion } from "framer-motion";
+import lightBgDesktop from "@/assets/light-bg-desktop.jpg";
+import lightBgMobile from "@/assets/light-bg-mobile.jpg";
 
 export const RealizationSection = () => {
   return (
-    <section id="realization" className="bg-ivory ink relative">
-      <div className="container mx-auto px-5 lg:px-10 py-16 lg:py-32 max-w-4xl">
+    <section id="realization" className="bg-ivory ink relative overflow-hidden">
+      {/* Light editorial backdrop — vertical for mobile, top crop for desktop */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat lg:hidden"
+        style={{ backgroundImage: `url(${lightBgMobile})` }}
+      />
+      <div
+        className="absolute inset-0 hidden lg:block bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${lightBgDesktop})` }}
+      />
+      {/* Soft ivory veil so text stays legible */}
+      <div className="absolute inset-0 bg-ivory/55 lg:bg-ivory/45" />
+
+      <div className="container mx-auto px-5 lg:px-10 py-16 lg:py-32 max-w-4xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
