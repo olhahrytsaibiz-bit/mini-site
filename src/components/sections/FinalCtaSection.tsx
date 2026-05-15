@@ -15,16 +15,15 @@ export const FinalCtaSection = () => {
           transition={{ duration: 0.9 }}
           className="max-w-4xl mx-auto text-center space-y-10"
         >
-          <h2 className="text-[32px] md:text-[48px] lg:text-[60px] font-semibold leading-[1.05] tracking-[-0.03em]">
-            <span className="text-gold">Точка відліку</span>
+          <h2 className="text-[30px] md:text-[44px] lg:text-[56px] font-semibold leading-[1.1] tracking-[-0.025em]">
+            <span className="text-gold">4 уроки</span>,
             <span className="block mt-3 text-foreground/95">
-              для тих, хто хоче нарешті зрозуміти, як працюють гроші у реальному житті
+              після яких ти вже не зможеш дивитися на свої гроші як раніше
             </span>
           </h2>
 
-          <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            4 короткі уроки, після яких фінанси перестають здаватися хаотичними й незрозумілими.
-            Без складної економіки, перевантаження і фінансової «мови експертів».
+          <p className="text-lg lg:text-xl text-foreground/75 max-w-2xl mx-auto leading-[1.7]">
+            Без складної економіки. Без перевантаження. І без відчуття, що тобі потрібно стати «фінансовою людиною».
           </p>
 
           <div className="pt-4 flex justify-center">

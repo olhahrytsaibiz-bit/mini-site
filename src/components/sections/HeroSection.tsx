@@ -41,7 +41,7 @@ export const HeroSection = () => {
             <div className="glass-plate inline-flex items-center gap-3 rounded-2xl px-5 py-3 max-w-[34rem]">
               <ShieldCheck className="w-4 h-4 text-[#BD9852] flex-shrink-0" strokeWidth={1.4} />
               <span className="text-[11px] xl:text-xs uppercase tracking-[0.18em] text-foreground/85 font-medium leading-relaxed">
-                Для тих, хто вміє заробляти — та хоче будувати майбутнє, а не лише витрачати
+                Для тих, хто хоче більше, ніж просто витрачати
               </span>
             </div>
 
@@ -51,7 +51,11 @@ export const HeroSection = () => {
             </h1>
 
             <p className="text-lg xl:text-xl text-foreground/75 max-w-md leading-[1.7]">
-              Міні-курс про гроші, систему і життя, де фінанси перестають бути постійною тривогою.
+              Для тих, хто втомився жити без відчуття опори.
+            </p>
+
+            <p className="text-base text-foreground/55 max-w-md leading-[1.7]">
+              Ти можеш добре заробляти — і все одно жити без відчуття стабільності.
             </p>
 
             <div className="space-y-6 pt-2">
@@ -67,14 +71,14 @@ export const HeroSection = () => {
               </Button>
 
               <p className="text-sm text-foreground/70 pt-1">
-                4 короткі уроки без складної економіки та фінансової «мови експертів»
+                Без складної економіки. Без перевантаження. І без відчуття, що тобі потрібно стати «фінансовою людиною».
               </p>
             </div>
           </motion.div>
         </div>
 
         {/* Mobile layout — badge top, title+subtitle centered, button bottom */}
-        <div className="lg:hidden relative flex flex-col min-h-[100svh] pt-12 pb-10">
+        <div className="lg:hidden relative flex flex-col min-h-[92svh] pt-12 pb-10">
           <motion.div
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -83,11 +87,11 @@ export const HeroSection = () => {
           >
             <ShieldCheck className="w-4 h-4 text-[#BD9852] flex-shrink-0" strokeWidth={1.4} />
             <span className="block text-[10px] uppercase tracking-[0.16em] text-foreground/90 font-medium leading-relaxed">
-              Для тих, хто вміє заробляти — та хоче будувати майбутнє, а не лише витрачати
+              Для тих, хто хоче більше, ніж просто витрачати
             </span>
           </motion.div>
 
-          <div className="mt-10">
+          <div className="mt-14">
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -104,7 +108,16 @@ export const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.25 }}
               className="text-[15px] text-foreground/80 max-w-[52%] leading-[1.75] mt-6"
             >
-              Міні-курс про гроші, систему і життя, де фінанси перестають бути постійною тривогою.
+              Для тих, хто втомився жити без відчуття опори.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.35 }}
+              className="text-[13px] text-foreground/60 max-w-[60%] leading-[1.7] mt-4"
+            >
+              Ти можеш добре заробляти — і все одно жити без відчуття стабільності.
             </motion.p>
           </div>
 
@@ -112,7 +125,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="mt-auto space-y-4 pt-4"
+            className="mt-auto space-y-4 pb-12 pt-4"
           >
             <Button
               size="lg"
@@ -126,7 +139,7 @@ export const HeroSection = () => {
             </Button>
 
             <p className="text-xs text-foreground/70 text-center px-4 pt-2">
-              4 короткі уроки без складної економіки та фінансової «мови експертів»
+              Без складної економіки. Без перевантаження. І без відчуття, що тобі потрібно стати «фінансовою людиною».
             </p>
           </motion.div>
         </div>
