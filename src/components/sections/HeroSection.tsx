@@ -12,7 +12,7 @@ export const HeroSection = () => {
     >
       {/* Background — mobile vertical; desktop landscape */}
       <div
-        className="absolute inset-0 bg-cover bg-[position:62%_42%] bg-no-repeat lg:hidden"
+        className="absolute inset-0 bg-cover bg-[position:62%_37%] bg-no-repeat lg:hidden"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
       <div
@@ -78,7 +78,7 @@ export const HeroSection = () => {
         </div>
 
         {/* Mobile layout — badge top, title+subtitle centered, button bottom */}
-        <div className="lg:hidden relative flex flex-col min-h-[100svh] pt-20 pb-10">
+        <div className="lg:hidden relative flex flex-col min-h-[100svh] pt-16 pb-10">
           <motion.div
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -91,7 +91,7 @@ export const HeroSection = () => {
             </span>
           </motion.div>
 
-          <div className="mt-24">
+          <div className="mt-20">
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -125,7 +125,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="mt-auto space-y-4 pb-8 pt-4"
+            className="mt-auto space-y-4 pb-12 pt-4"
           >
             <Button
               size="lg"
