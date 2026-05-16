@@ -12,7 +12,7 @@ export const HeroSection = () => {
     >
       {/* Background — mobile vertical; desktop landscape */}
       <div
-        className="absolute inset-0 bg-cover bg-[position:62%_37%] bg-no-repeat lg:hidden"
+        className="absolute inset-0 bg-cover bg-[position:62%_55%] bg-no-repeat lg:hidden"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
       <div
@@ -61,7 +61,7 @@ export const HeroSection = () => {
             <div className="space-y-6 pt-2">
               <Button
                 size="lg"
-                className="group text-base px-8 py-7 text-[#0F1115] font-medium tracking-wide rounded-md transition-all bg-gradient-to-b from-[#C7A55A] to-[#9C7E3A] hover:from-[#b89a55] hover:to-[#8b7032] shadow-[0_10px_30px_-12px_rgba(156,126,58,0.55)]"
+                className="group text-base px-8 py-7 text-[#111111] font-medium tracking-wide rounded-md bg-[#D4B06A] hover:bg-[#E1BE7A] shadow-[0_8px_24px_-8px_rgba(212,176,106,0.45)] transition-colors"
                 asChild
               >
                 <a href="https://wayforpay.com" target="_blank" rel="noopener noreferrer">
@@ -78,7 +78,7 @@ export const HeroSection = () => {
         </div>
 
         {/* Mobile layout — badge top, title+subtitle centered, button bottom */}
-        <div className="lg:hidden relative flex flex-col min-h-[100svh] pt-16 pb-10">
+        <div className="lg:hidden relative flex flex-col min-h-[88svh] pt-16 pb-4">
           <motion.div
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -125,11 +125,11 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="mt-auto space-y-4 pb-12 pt-4"
+            className="mt-auto space-y-3 pb-6 pt-2"
           >
             <Button
               size="lg"
-              className="group w-full text-base py-7 text-[#0F1115] font-medium tracking-wide rounded-md bg-gradient-to-b from-[#C7A55A] to-[#9C7E3A] hover:from-[#b89a55] hover:to-[#8b7032] shadow-[0_10px_30px_-12px_rgba(156,126,58,0.55)]"
+              className="group w-full text-base py-7 text-[#111111] font-medium tracking-wide rounded-md bg-[#D4B06A] hover:bg-[#E1BE7A] shadow-[0_8px_24px_-8px_rgba(212,176,106,0.45)] transition-colors"
               asChild
             >
               <a href="https://wayforpay.com" target="_blank" rel="noopener noreferrer">
