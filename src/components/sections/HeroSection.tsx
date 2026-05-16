@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { startCheckout } from "@/lib/payment";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import heroBgDesktop from "@/assets/hero-bg-desktop.jpg";
@@ -60,15 +61,8 @@ export const HeroSection = () => {
 
             <div className="space-y-6 pt-2">
               <Button
-                size="lg"
-                className="group text-base px-8 py-7 text-[#111111] font-medium tracking-wide rounded-md bg-[#D4B06A] hover:bg-[#E1BE7A] shadow-[0_8px_24px_-8px_rgba(212,176,106,0.45)] transition-colors"
-                asChild
-              >
-                <a href="https://wayforpay.com" target="_blank" rel="noopener noreferrer">
-                  Отримати доступ за 9€
-                  <ArrowRight className="ml-3 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </a>
-              </Button>
+                size="lg" className="group text-base px-8 py-7 text-[#111111] font-medium tracking-wide rounded-md bg-[#D4B06A] hover:bg-[#E1BE7A] shadow-[0_8px_24px_-8px_rgba(212,176,106,0.45)] transition-colors" onClick={() => startCheckout()}>Отримати доступ за 9€
+                  <ArrowRight className="ml-3 w-4 h-4 transition-transform group-hover:translate-x-1" /></Button>
 
               <p className="text-sm text-foreground/70 pt-1">
                 Без складної економіки. Без перевантаження. І без відчуття, що тобі потрібно стати «фінансовою людиною».
@@ -128,15 +122,8 @@ export const HeroSection = () => {
             className="mt-auto space-y-3 pb-6 pt-2"
           >
             <Button
-              size="lg"
-              className="group w-full text-base py-7 text-[#111111] font-medium tracking-wide rounded-md bg-[#D4B06A] hover:bg-[#E1BE7A] shadow-[0_8px_24px_-8px_rgba(212,176,106,0.45)] transition-colors"
-              asChild
-            >
-              <a href="https://wayforpay.com" target="_blank" rel="noopener noreferrer">
-                Отримати доступ за 9€
-                <ArrowRight className="ml-3 w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </a>
-            </Button>
+              size="lg" className="group w-full text-base py-7 text-[#111111] font-medium tracking-wide rounded-md bg-[#D4B06A] hover:bg-[#E1BE7A] shadow-[0_8px_24px_-8px_rgba(212,176,106,0.45)] transition-colors" onClick={() => startCheckout()}>Отримати доступ за 9€
+                <ArrowRight className="ml-3 w-4 h-4 transition-transform group-hover:translate-x-1" /></Button>
 
             <p className="text-xs text-foreground/70 text-center px-4 pt-2">
               Без складної економіки. Без перевантаження. І без відчуття, що тобі потрібно стати «фінансовою людиною».

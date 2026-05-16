@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { startCheckout } from "@/lib/payment";
 
 export const FinalCtaSection = () => {
   return (
@@ -28,14 +29,7 @@ export const FinalCtaSection = () => {
 
           <div className="pt-4 flex justify-center">
             <Button
-              size="lg"
-              className="text-base px-10 py-7 bg-gradient-to-b from-[#C7A55A] to-[#9C7E3A] hover:from-[#b89a55] hover:to-[#8b7032] shadow-[0_10px_30px_-12px_rgba(156,126,58,0.55)] text-[#0F1115] font-medium tracking-wide rounded-md"
-              asChild
-            >
-              <a href="https://wayforpay.com" target="_blank" rel="noopener noreferrer">
-                Отримати доступ за 9€
-              </a>
-            </Button>
+              size="lg" className="text-base px-10 py-7 bg-gradient-to-b from-[#C7A55A] to-[#9C7E3A] hover:from-[#b89a55] hover:to-[#8b7032] shadow-[0_10px_30px_-12px_rgba(156,126,58,0.55)] text-[#0F1115] font-medium tracking-wide rounded-md" onClick={() => startCheckout()}>Отримати доступ за 9€</Button>
           </div>
         </motion.div>
       </div>
