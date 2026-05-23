@@ -1,67 +1,81 @@
-import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { CheckCircle } from "lucide-react";
+import { Link } from "react-router-dom";
+import { CheckCircle2 } from "lucide-react";
 
 const Thanks = () => {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      window.location.href = "https://site.com/start";
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-4 overflow-x-hidden">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="text-center space-y-8 max-w-md"
-      >
+    <div className="min-h-screen bg-graphite text-foreground flex flex-col">
+      <header className="border-b border-white/5">
+        <div className="container mx-auto px-5 lg:px-10 h-16 flex items-center justify-between">
+          <Link to="/" className="text-lg font-semibold tracking-tight text-gold">
+            Точка відліку
+          </Link>
+          <Link to="/" className="text-sm text-foreground/70 hover:text-gold transition-colors">
+            На головну
+          </Link>
+        </div>
+      </header>
+
+      <main className="flex-1 flex items-center justify-center px-5 lg:px-10 py-16">
         <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-          className="flex justify-center"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-center max-w-xl mx-auto space-y-8"
         >
-          <div className="bg-primary/20 p-6 rounded-full">
-            <CheckCircle className="w-20 h-20 text-primary" />
+          <motion.div
+            initial={{ scale: 0.85, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex justify-center"
+          >
+            <div className="w-20 h-20 rounded-full border border-[#C8A96B]/40 flex items-center justify-center">
+              <CheckCircle2 className="w-9 h-9 text-[#C8A96B]" strokeWidth={1.4} />
+            </div>
+          </motion.div>
+
+          <h1 className="text-[32px] md:text-[44px] font-semibold leading-[1.1] tracking-[-0.025em] text-gold">
+            Дякуємо за оплату
+          </h1>
+
+          <div className="space-y-5 text-base lg:text-lg leading-[1.75] text-foreground/80">
+            <p>
+              Доступ до міні-курсу <span className="text-foreground/95">«Точка відліку»</span> вже
+              формується для тебе.
+            </p>
+            <p>
+              Посилання на курс надійде на твій email протягом кількох хвилин. Якщо листа немає у
+              «Вхідних» — перевір папку «Спам» або «Промоакції».
+            </p>
+            <p className="text-foreground/65 text-sm pt-2">
+              Якщо посилання не прийшло протягом години, напиши нам:{" "}
+              <a href="mailto:olhafair@gmail.com" className="text-gold hover:underline">
+                olhafair@gmail.com
+              </a>
+            </p>
+          </div>
+
+          <div className="pt-4">
+            <Link
+              to="/"
+              className="inline-block text-sm text-foreground/70 hover:text-gold transition-colors"
+            >
+              ← Повернутися на головну
+            </Link>
           </div>
         </motion.div>
-        
-        <h1 className="text-3xl md:text-4xl font-bold text-gradient">
-          Дякуємо за покупку!
-        </h1>
-        
-        <p className="text-lg text-muted-foreground">
-          Для того, щоб розпочати курс,
-          <br />
-          натисніть на кнопку
-        </p>
-        
-        <motion.div
-          animate={{
-            scale: [1, 1.05, 1],
-          }}
-          transition={{
-            duration: 1,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-        >
-          <Button size="lg" className="text-lg px-8 py-6 glow-effect" asChild>
-            <a href="https://site.com/start">
-              Розпочати курс
-            </a>
-          </Button>
-        </motion.div>
-        
-        <p className="text-sm text-muted-foreground">
-          Автоматичне перенаправлення через 5 секунд...
-        </p>
-      </motion.div>
+      </main>
+
+      <footer className="border-t border-white/5">
+        <div className="container mx-auto px-5 lg:px-10 py-6 text-xs text-foreground/50 flex flex-wrap gap-x-6 gap-y-2 justify-center md:justify-between">
+          <span>© {new Date().getFullYear()} ФОП Грицай Ольга Григорівна</span>
+          <span className="flex gap-4">
+            <Link to="/terms" className="hover:text-gold">Оферта</Link>
+            <Link to="/refund" className="hover:text-gold">Повернення</Link>
+            <Link to="/contacts" className="hover:text-gold">Контакти</Link>
+          </span>
+        </div>
+      </footer>
     </div>
   );
 };
