@@ -55,10 +55,6 @@ export const HeroSection = () => {
               Для тих, хто втомився жити без відчуття опори.
             </p>
 
-            <p className="text-base text-foreground/55 max-w-md leading-[1.7]">
-              Ти можеш добре заробляти — і все одно жити без відчуття стабільності.
-            </p>
-
             <div className="space-y-6 pt-2">
               <Button
                 size="lg" className="group text-base px-8 py-7 text-[#111111] font-medium tracking-wide rounded-md bg-[#D4B06A] hover:bg-[#E1BE7A] shadow-[0_8px_24px_-8px_rgba(212,176,106,0.45)] transition-colors" onClick={() => startCheckout()}>Отримати доступ за 9€
@@ -85,7 +81,7 @@ export const HeroSection = () => {
             </span>
           </motion.div>
 
-          <div className="mt-20">
+          <div className="mt-28">
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -105,14 +101,6 @@ export const HeroSection = () => {
               Для тих, хто втомився жити без відчуття опори.
             </motion.p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.35 }}
-              className="text-[13px] text-foreground/60 max-w-[60%] leading-[1.7] mt-4"
-            >
-              Ти можеш добре заробляти — і все одно жити без відчуття стабільності.
-            </motion.p>
           </div>
 
           <motion.div
