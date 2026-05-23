@@ -4,11 +4,15 @@ interface Env {
   WAYFORPAY_SECRET: string;
 }
 
-const MERCHANT_ACCOUNT = "www_instagram_com_72371";
+// === WayForPay merchant config ===
+// Make sure WAYFORPAY_SECRET in Cloudflare env belongs to THIS merchant account.
+const MERCHANT_ACCOUNT = "mini_olhafair_com";
 const MERCHANT_DOMAIN = "mini.olhafair.com";
 const PRODUCT_NAME = "Точка відліку — міні-курс";
-const AMOUNT = 9;
+const AMOUNT = "9";          // primary currency amount
 const CURRENCY = "EUR";
+const PRODUCT_COUNT = "1";
+const PRODUCT_PRICE = "9";   // must match AMOUNT for a single-item order
 
 function genOrderRef(): string {
   const ts = Date.now();
@@ -25,24 +29,31 @@ export const onRequestPost: PagesFunction<Env> = async ({ env }) => {
   }
 
   const orderReference = genOrderRef();
-  const orderDate = Math.floor(Date.now() / 1000);
+  const orderDate = String(Math.floor(Date.now() / 1000));
 
-  // Per WayForPay docs: merchantAccount;merchantDomainName;orderReference;orderDate;amount;currency;
-  // productName[0];...;productCount[0];...;productPrice[0];...
+  // Signature string per WayForPay Purchase docs:
+  //   merchantAccount;merchantDomainName;orderReference;orderDate;amount;currency;
+  //   productName[0..n];productCount[0..n];productPrice[0..n]
   const stringToSign = [
     MERCHANT_ACCOUNT,
     MERCHANT_DOMAIN,
     orderReference,
-    String(orderDate),
-    String(AMOUNT),
+    orderDate,
+    AMOUNT,
     CURRENCY,
     PRODUCT_NAME,
-    "1",
-    String(AMOUNT),
+    PRODUCT_COUNT,
+    PRODUCT_PRICE,
   ].join(";");
 
-  const merchantSignature = CryptoJS.HmacMD5(stringToSign, env.WAYFORPAY_SECRET).toString();
+  const merchantSignature = CryptoJS.HmacMD5(
+    stringToSign,
+    env.WAYFORPAY_SECRET
+  ).toString();
 
+  // IMPORTANT: values returned to the widget MUST exactly match the ones
+  // used in the signature string (same type/format). We pass strings everywhere
+  // so client-side JSON.stringify cannot reformat numbers.
   return new Response(
     JSON.stringify({
       merchantAccount: MERCHANT_ACCOUNT,
@@ -50,12 +61,12 @@ export const onRequestPost: PagesFunction<Env> = async ({ env }) => {
       authorizationType: "SimpleSignature",
       merchantSignature,
       orderReference,
-      orderDate,
-      amount: AMOUNT,
+      orderDate: Number(orderDate), // widget expects number for orderDate
+      amount: Number(AMOUNT),
       currency: CURRENCY,
       productName: [PRODUCT_NAME],
-      productPrice: [AMOUNT],
-      productCount: [1],
+      productPrice: [Number(PRODUCT_PRICE)],
+      productCount: [Number(PRODUCT_COUNT)],
       language: "UA",
       returnUrl: `https://${MERCHANT_DOMAIN}/thanks`,
     }),
