@@ -13,7 +13,7 @@ export const HeroSection = () => {
     >
       {/* Background — mobile vertical; desktop landscape */}
       <div
-        className="absolute inset-0 bg-[length:auto_180%] bg-[position:62%_top] bg-no-repeat lg:hidden"
+        className="absolute inset-0 bg-cover bg-[position:62%_center] bg-no-repeat lg:hidden"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
       <div
