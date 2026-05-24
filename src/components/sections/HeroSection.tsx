@@ -13,7 +13,7 @@ export const HeroSection = () => {
     >
       {/* Background — mobile vertical; desktop landscape */}
       <div
-        className="absolute inset-0 bg-cover bg-[position:62%_55%] bg-no-repeat lg:hidden"
+        className="absolute inset-0 bg-cover bg-[position:62%_72%] bg-no-repeat lg:hidden"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
       <div
@@ -107,7 +107,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="mt-auto space-y-3 pb-6 pt-2"
+            className="mt-auto space-y-3 pb-2 pt-2"
           >
             <Button
               size="lg" className="group w-full text-base py-7 text-[#111111] font-medium tracking-wide rounded-md bg-[#D4B06A] hover:bg-[#E1BE7A] shadow-[0_8px_24px_-8px_rgba(212,176,106,0.45)] transition-colors" onClick={() => startCheckout()}>Отримати доступ за 9€
