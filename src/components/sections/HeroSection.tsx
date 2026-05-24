@@ -68,7 +68,7 @@ export const HeroSection = () => {
         </div>
 
         {/* Mobile layout — badge top, title+subtitle centered, button bottom */}
-        <div className="lg:hidden relative flex flex-col min-h-[88svh] pt-16 pb-4">
+        <div className="lg:hidden relative flex flex-col min-h-[100svh] pt-12 pb-4">
           <motion.div
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -107,7 +107,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="mt-auto space-y-3 pb-2 pt-2"
+            className="mt-auto space-y-3 pt-4"
           >
             <Button
               size="lg" className="group w-full text-base py-7 text-[#111111] font-medium tracking-wide rounded-md bg-[#D4B06A] hover:bg-[#E1BE7A] shadow-[0_8px_24px_-8px_rgba(212,176,106,0.45)] transition-colors" onClick={() => startCheckout()}>Отримати доступ за 9€
