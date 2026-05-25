@@ -55,7 +55,7 @@ const Thanks = () => {
 
             <div className="pt-6">
               <a
-                href="https://t.me/tochka_vidliku_bot"
+                href="https://olhafair-bot.tg.pulse.is"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-10 py-5 text-base font-medium tracking-wide rounded-md bg-[#D4B06A] hover:bg-[#E1BE7A] text-[#111111] shadow-[0_8px_24px_-8px_rgba(212,176,106,0.5)] transition-colors"
