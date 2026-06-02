@@ -1,6 +1,9 @@
 import { Navigation } from "@/components/Navigation";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { EmotionalSection } from "@/components/sections/EmotionalSection";
+import { ForWhomSection } from "@/components/sections/ForWhomSection";
+import { AfterCourseSection } from "@/components/sections/AfterCourseSection";
+import { BonusesSection } from "@/components/sections/BonusesSection";
 import { RealizationSection } from "@/components/sections/RealizationSection";
 import { MiniCourseSection } from "@/components/sections/MiniCourseSection";
 import { AuthorSection } from "@/components/sections/AuthorSection";
@@ -14,11 +17,14 @@ const Index = () => {
     <div className="min-h-screen bg-graphite text-foreground overflow-x-hidden">
       <Navigation />
       <HeroSection />
+      <ForWhomSection />
       <EmotionalSection />
       <RealizationSection />
       <MiniCourseSection />
+      <AfterCourseSection />
       <AuthorSection />
       <SocialProofSection />
+      <BonusesSection />
       <FAQSection />
       <FinalCtaSection />
       <FooterSection />
