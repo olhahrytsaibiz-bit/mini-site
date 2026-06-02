@@ -9,7 +9,7 @@ const items = [
 
 export const AfterCourseSection = () => {
   return (
-    <section id="after-course" className="bg-charcoal text-foreground relative">
+    <section id="after-course" className="bg-ivory-warm ink relative">
       <div className="container mx-auto px-5 lg:px-10 py-16 lg:py-32 max-w-4xl">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -29,7 +29,7 @@ export const AfterCourseSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.6, delay: i * 0.08 }}
-              className="flex gap-4 lg:gap-5 items-start text-base lg:text-lg leading-[1.7] text-foreground/80"
+              className="flex gap-4 lg:gap-5 items-start text-base lg:text-lg leading-[1.75] ink-strong"
             >
               <span
                 className="flex-shrink-0 w-[6px] h-[6px] rounded-full bg-[#BD9852] mt-[12px] lg:mt-[14px]"
