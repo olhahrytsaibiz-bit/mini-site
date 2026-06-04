@@ -1,9 +1,14 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { trackPurchase } from "@/lib/analytics";
 import { Link } from "react-router-dom";
 import thanksBgMobile from "@/assets/thanks-bg-mobile.jpg";
 import thanksBgDesktop from "@/assets/thanks-bg-desktop.jpg";
 
 const Thanks = () => {
+  useEffect(() => {
+    trackPurchase();
+  }, []);
   return (
     <div className="min-h-screen bg-ivory ink relative overflow-hidden">
       {/* Background — vertical for mobile, landscape for desktop */}

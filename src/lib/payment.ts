@@ -11,6 +11,8 @@ declare global {
   }
 }
 
+import { trackInitiateCheckout } from "@/lib/analytics";
+
 const SCRIPT_URL = "https://secure.wayforpay.com/server/pay-widget.js";
 
 let scriptPromise: Promise<void> | null = null;
@@ -35,6 +37,7 @@ function loadScript(): Promise<void> {
 
 export async function startCheckout(): Promise<void> {
   try {
+    trackInitiateCheckout();
     await loadScript();
     const res = await fetch("/api/checkout", { method: "POST" });
     if (!res.ok) throw new Error("Checkout init failed");
