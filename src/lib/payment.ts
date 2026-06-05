@@ -44,6 +44,7 @@ export async function startCheckout(): Promise<void> {
     const params = await res.json();
     const Wayforpay = window.Wayforpay;
     if (!Wayforpay) throw new Error("Widget not loaded");
+    try { sessionStorage.setItem("lastOrderRef", String(params.orderReference || "")); } catch {}
     const wfp = new Wayforpay();
     wfp.run(
       params,

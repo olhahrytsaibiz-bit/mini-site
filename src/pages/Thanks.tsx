@@ -7,7 +7,9 @@ import thanksBgDesktop from "@/assets/thanks-bg-desktop.jpg";
 
 const Thanks = () => {
   useEffect(() => {
-    trackPurchase();
+    let ref: string | undefined;
+    try { ref = sessionStorage.getItem("lastOrderRef") || undefined; } catch {}
+    trackPurchase(9, "EUR", ref);
   }, []);
   return (
     <div className="min-h-screen bg-ivory ink relative overflow-hidden">
