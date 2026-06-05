@@ -46,13 +46,12 @@ export const HeroSection = () => {
               </span>
             </div>
 
-            <h1 className="text-[68px] xl:text-[96px] font-semibold leading-[0.95] tracking-[-0.03em]">
-              <span className="block text-gold">Точка</span>
-              <span className="block text-gold">відліку</span>
+            <h1 className="text-[40px] xl:text-[56px] font-semibold leading-[1.08] tracking-[-0.025em] text-gold max-w-xl">
+              Ти щодня працюєш на гроші. А має бути навпаки.
             </h1>
 
             <p className="text-lg xl:text-xl text-foreground/75 max-w-md leading-[1.7]">
-              Для тих, хто втомився жити без відчуття опори.
+              Без системи дохід просто розчиняється в житті — скільки б ти не заробляла.
             </p>
 
             <div className="space-y-6 pt-2">
@@ -86,10 +85,9 @@ export const HeroSection = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15 }}
-              className="text-[44px] sm:text-5xl font-semibold leading-[1.0] tracking-[-0.025em] text-left max-w-[58%]"
+              className="text-[28px] sm:text-[32px] font-semibold leading-[1.15] tracking-[-0.02em] text-left max-w-[62%] text-gold"
             >
-              <span className="block text-gold">Точка</span>
-              <span className="block text-gold">відліку</span>
+              Ти щодня працюєш на гроші. А має бути навпаки.
             </motion.h1>
 
             <motion.p
@@ -98,7 +96,7 @@ export const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.25 }}
               className="text-[15px] text-foreground/80 max-w-[52%] leading-[1.75] mt-6"
             >
-              Для тих, хто втомився жити без відчуття опори.
+              Без системи дохід просто розчиняється в житті — скільки б ти не заробляла.
             </motion.p>
 
           </div>
