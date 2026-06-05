@@ -46,8 +46,9 @@ export const HeroSection = () => {
               </span>
             </div>
 
-            <h1 className="text-[40px] xl:text-[56px] font-semibold leading-[1.08] tracking-[-0.025em] text-gold max-w-xl">
-              Ти щодня працюєш на гроші. А має бути навпаки.
+            <h1 className="text-[42px] xl:text-[56px] font-semibold leading-[1.15] tracking-[-0.025em] text-gold">
+              <span className="block">Ти щодня працюєш на гроші.</span>
+              <span className="block mt-3">А має бути навпаки.</span>
             </h1>
 
             <p className="text-lg xl:text-xl text-foreground/75 max-w-md leading-[1.7]">
@@ -85,9 +86,10 @@ export const HeroSection = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15 }}
-              className="text-[28px] sm:text-[32px] font-semibold leading-[1.15] tracking-[-0.02em] text-left max-w-[62%] text-gold"
+              className="text-[22px] sm:text-[26px] font-semibold leading-[1.25] tracking-[-0.015em] text-left max-w-[82%] text-gold"
             >
-              Ти щодня працюєш на гроші. А має бути навпаки.
+              <span className="block">Ти щодня працюєш на гроші.</span>
+              <span className="block mt-2">А має бути навпаки.</span>
             </motion.h1>
 
             <motion.p
