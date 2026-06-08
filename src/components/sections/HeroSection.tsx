@@ -86,17 +86,19 @@ export const HeroSection = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15 }}
-              className="text-[24px] sm:text-[28px] font-semibold leading-[1.25] tracking-[-0.015em] text-left max-w-[78%] text-gold"
+              className="text-[24px] sm:text-[28px] font-semibold leading-[1.2] tracking-[-0.015em] text-left max-w-[60%] text-gold"
             >
-              <span className="block">Світ влаштований так,</span>
-              <span className="block mt-2">щоб ти витрачала більше.</span>
+              <span className="block">Світ</span>
+              <span className="block">влаштований так,</span>
+              <span className="block">щоб ти витрачала</span>
+              <span className="block">більше.</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.25 }}
-              className="text-[15px] text-foreground/80 max-w-[52%] leading-[1.75] mt-6"
+              className="text-[15px] text-foreground/80 max-w-[58%] leading-[1.7] mt-5"
             >
               Зрозумій, як це працює — і це перестане працювати на тобі.
             </motion.p>
