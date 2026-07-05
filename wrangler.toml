@@ -1,12 +1,12 @@
 name = "mini-site"
 compatibility_date = "2026-05-01"
+pages_build_output_dir = "dist"
 
-# D1 database binding — the real database_id must be filled in by the account owner
-# after creating the DB via Cloudflare Dashboard or `wrangler d1 create audits-db`.
+# D1 database — production
 [[d1_databases]]
 binding = "DB"
 database_name = "audits-db"
-database_id = "TO_BE_FILLED_AFTER_CREATION"
+database_id = "3c355cfc-6a80-45d1-af34-1602f470ddfc"
 
-# Secrets (WAYFORPAY_SECRET, OPENAI_API_KEY) are set via the dashboard as encrypted env vars,
-# NOT in this file. This file is committed to git; secrets never are.
+# Secrets (WAYFORPAY_SECRET, OPENAI_API_KEY) are set via the Cloudflare dashboard
+# as encrypted env vars — they never live in this file.
