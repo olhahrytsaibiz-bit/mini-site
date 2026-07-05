@@ -1,7 +1,13 @@
 /// <reference types="@cloudflare/workers-types" />
 // AI Diagnostics endpoint.
-// Day 1: mock analysis returned. Day 3: OpenAI wired in.
-// Data model: `audits` table for metadata (+ rescue JSON blob), `audit_answers` for query-friendly rows.
+// Live: OpenAI GPT-4o + Structured Outputs. Writes to `audits` and `audit_answers`.
+
+import {
+  SYSTEM_PROMPT_V0_1,
+  PROMPT_VERSION,
+  buildUserMessage,
+  AUDIT_JSON_SCHEMA,
+} from "./audit-prompt";
 
 interface AnswerChoiceObject {
   choice: string;
@@ -21,10 +27,26 @@ interface AuditRequest {
   };
 }
 
+interface AnalysisPayload {
+  current_system: string;
+  what_works: string;
+  main_limitation: string;
+  new_perspective: string;
+  internal: {
+    decision_style: "reactive" | "planned" | "mixed";
+    financial_stage: "survival" | "stability" | "growth";
+    emotion: "anxiety" | "calm" | "confidence" | "mixed";
+  };
+}
+
 interface Env {
   DB: D1Database;
-  OPENAI_API_KEY?: string;
+  OPENAI_API_KEY: string;
 }
+
+const MODEL = "gpt-4o";
+const OPENAI_URL = "https://api.openai.com/v1/chat/completions";
+const OPENAI_TIMEOUT_MS = 45000;
 
 function ulid(): string {
   const t = Date.now();
@@ -47,9 +69,9 @@ async function sha256Hex(input: string): Promise<string> {
     .join("");
 }
 
-function badRequest(msg: string): Response {
-  return new Response(JSON.stringify({ error: msg }), {
-    status: 400,
+function jsonResponse(status: number, body: unknown): Response {
+  return new Response(JSON.stringify(body), {
+    status,
     headers: { "Content-Type": "application/json" },
   });
 }
@@ -66,13 +88,49 @@ function validateAnswers(a: unknown): a is Answer[] {
   });
 }
 
-// Split an answer into (text, choice) for the flat table.
 function splitAnswer(a: Answer): { text: string | null; choice: string | null; length: number } {
-  if (typeof a === "string") {
-    return { text: a, choice: null, length: a.length };
-  }
+  if (typeof a === "string") return { text: a, choice: null, length: a.length };
   const other = a.other ?? "";
   return { text: other || null, choice: a.choice, length: other.length };
+}
+
+async function callOpenAI(apiKey: string, answers: Answer[]): Promise<AnalysisPayload> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), OPENAI_TIMEOUT_MS);
+
+  try {
+    const res = await fetch(OPENAI_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: MODEL,
+        temperature: 0.7,
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT_V0_1 },
+          { role: "user", content: buildUserMessage(answers) },
+        ],
+        response_format: { type: "json_schema", json_schema: AUDIT_JSON_SCHEMA },
+      }),
+      signal: controller.signal,
+    });
+
+    if (!res.ok) {
+      const errText = await res.text();
+      throw new Error(`OpenAI ${res.status}: ${errText.slice(0, 500)}`);
+    }
+    const data = (await res.json()) as {
+      choices: Array<{ message: { content: string; refusal?: string | null } }>;
+    };
+    const msg = data.choices?.[0]?.message;
+    if (msg?.refusal) throw new Error(`OpenAI refused: ${msg.refusal}`);
+    if (!msg?.content) throw new Error("OpenAI returned empty content");
+    return JSON.parse(msg.content) as AnalysisPayload;
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
@@ -80,36 +138,34 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   try {
     body = await request.json();
   } catch {
-    return badRequest("Invalid JSON");
+    return jsonResponse(400, { error: "Invalid JSON" });
   }
   if (!validateAnswers(body.answers)) {
-    return badRequest("answers must be an array of 9 non-empty items");
+    return jsonResponse(400, { error: "answers must be an array of 9 non-empty items" });
+  }
+  if (!env.OPENAI_API_KEY) {
+    return jsonResponse(500, { error: "OpenAI API key not configured" });
   }
 
-  // TODO (day 3): replace with OpenAI GPT-4o call using structured outputs.
-  const mock = {
-    current_system: "Тут буде опис того, як зараз працює твоя фінансова система. Це заглушка для day 1.",
-    what_works: "Тут буде опис того, що вже працює. Це заглушка для day 1.",
-    main_limitation: "Тут буде опис головного обмеження. Це заглушка для day 1.",
-    new_perspective: "Тут буде інший погляд на фінансову систему. Це заглушка для day 1.",
-    internal: {
-      decision_style: "mixed" as const,
-      financial_stage: "stability" as const,
-      emotion: "mixed" as const,
-    },
-  };
+  // 1) Call OpenAI
+  let analysis: AnalysisPayload;
+  try {
+    analysis = await callOpenAI(env.OPENAI_API_KEY, body.answers);
+  } catch (e) {
+    console.error("OpenAI call failed", e);
+    return jsonResponse(502, { error: "AI service unavailable" });
+  }
 
+  // 2) Persist to D1 (dual-write to `audits` + 9 rows in `audit_answers`)
   const id = ulid();
   const createdAt = Math.floor(Date.now() / 1000);
   const ipRaw = request.headers.get("CF-Connecting-IP") ?? "";
   const ipHash = ipRaw ? await sha256Hex(ipRaw) : null;
   const ua = (request.headers.get("User-Agent") ?? "").slice(0, 500);
 
-  // Prepare batch: 1 insert into audits + 9 inserts into audit_answers
   if (env.DB) {
     try {
       const stmts: D1PreparedStatement[] = [];
-
       stmts.push(
         env.DB.prepare(
           `INSERT INTO audits (id, created_at, answers, internal, email, phone,
@@ -120,20 +176,19 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
           id,
           createdAt,
           JSON.stringify(body.answers),
-          JSON.stringify(mock.internal),
+          JSON.stringify(analysis.internal),
           body.email ?? null,
           body.phone ?? null,
           body.utm?.source ?? null,
           body.utm?.medium ?? null,
           body.utm?.campaign ?? null,
           body.utm?.referrer ?? null,
-          "v0.1-mock",
-          "mock",
+          PROMPT_VERSION,
+          MODEL,
           ipHash,
           ua
         )
       );
-
       body.answers.forEach((a, i) => {
         const { text, choice, length } = splitAnswer(a);
         stmts.push(
@@ -143,23 +198,18 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
           ).bind(id, i + 1, text, choice, length)
         );
       });
-
-      // Cloudflare D1: batch() runs statements atomically in one round-trip.
       await env.DB.batch(stmts);
     } catch (e) {
       console.error("D1 batch insert failed", e);
-      // Don't fail the user response — keep UX smooth. Warnings will show in Workers logs.
+      // Don't fail the response — user already paid the OpenAI cost, they should see the result.
     }
   }
 
-  return new Response(
-    JSON.stringify({
-      id,
-      current_system: mock.current_system,
-      what_works: mock.what_works,
-      main_limitation: mock.main_limitation,
-      new_perspective: mock.new_perspective,
-    }),
-    { headers: { "Content-Type": "application/json" } }
-  );
+  return jsonResponse(200, {
+    id,
+    current_system: analysis.current_system,
+    what_works: analysis.what_works,
+    main_limitation: analysis.main_limitation,
+    new_perspective: analysis.new_perspective,
+  });
 };
