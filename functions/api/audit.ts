@@ -1,17 +1,16 @@
 /// <reference types="@cloudflare/workers-types" />
-// AI Diagnostics endpoint — day 1 skeleton.
-// Accepts POST with 9 answers, validates shape, stores in D1, returns MOCK analysis.
-// OpenAI wiring will land in day 3.
+// AI Diagnostics endpoint.
+// Day 1: mock analysis returned. Day 3: OpenAI wired in.
+// Data model: `audits` table for metadata (+ rescue JSON blob), `audit_answers` for query-friendly rows.
 
 interface AnswerChoiceObject {
   choice: string;
   other?: string;
 }
-
 type Answer = string | AnswerChoiceObject;
 
 interface AuditRequest {
-  answers: Answer[];               // must be exactly 9 items
+  answers: Answer[];
   email?: string;
   phone?: string;
   utm?: {
@@ -27,7 +26,6 @@ interface Env {
   OPENAI_API_KEY?: string;
 }
 
-// Minimal ULID generator (26-char sortable id).
 function ulid(): string {
   const t = Date.now();
   const rnd = crypto.getRandomValues(new Uint8Array(10));
@@ -57,16 +55,24 @@ function badRequest(msg: string): Response {
 }
 
 function validateAnswers(a: unknown): a is Answer[] {
-  if (!Array.isArray(a)) return false;
-  if (a.length !== 9) return false;
+  if (!Array.isArray(a) || a.length !== 9) return false;
   return a.every((x) => {
-    if (typeof x === "string") return true;
+    if (typeof x === "string") return x.trim().length > 0;
     if (typeof x === "object" && x !== null) {
       const obj = x as Record<string, unknown>;
-      return typeof obj.choice === "string";
+      return typeof obj.choice === "string" && obj.choice.trim().length > 0;
     }
     return false;
   });
+}
+
+// Split an answer into (text, choice) for the flat table.
+function splitAnswer(a: Answer): { text: string | null; choice: string | null; length: number } {
+  if (typeof a === "string") {
+    return { text: a, choice: null, length: a.length };
+  }
+  const other = a.other ?? "";
+  return { text: other || null, choice: a.choice, length: other.length };
 }
 
 export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
@@ -76,13 +82,11 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   } catch {
     return badRequest("Invalid JSON");
   }
-
   if (!validateAnswers(body.answers)) {
-    return badRequest("answers must be an array of 9 items");
+    return badRequest("answers must be an array of 9 non-empty items");
   }
 
-  // TODO (day 3): call OpenAI here with system prompt v0.1 + structured outputs.
-  // For now return a deterministic mock so the frontend can be built in parallel.
+  // TODO (day 3): replace with OpenAI GPT-4o call using structured outputs.
   const mock = {
     current_system: "Тут буде опис того, як зараз працює твоя фінансова система. Це заглушка для day 1.",
     what_works: "Тут буде опис того, що вже працює. Це заглушка для day 1.",
@@ -99,17 +103,20 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   const createdAt = Math.floor(Date.now() / 1000);
   const ipRaw = request.headers.get("CF-Connecting-IP") ?? "";
   const ipHash = ipRaw ? await sha256Hex(ipRaw) : null;
-  const ua = request.headers.get("User-Agent") ?? "";
+  const ua = (request.headers.get("User-Agent") ?? "").slice(0, 500);
 
-  try {
-    if (env.DB) {
-      await env.DB.prepare(
-        `INSERT INTO audits (id, created_at, answers, internal, email, phone,
-           utm_source, utm_medium, utm_campaign, referrer, prompt_version, model,
-           ip_hash, user_agent)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
-      )
-        .bind(
+  // Prepare batch: 1 insert into audits + 9 inserts into audit_answers
+  if (env.DB) {
+    try {
+      const stmts: D1PreparedStatement[] = [];
+
+      stmts.push(
+        env.DB.prepare(
+          `INSERT INTO audits (id, created_at, answers, internal, email, phone,
+             utm_source, utm_medium, utm_campaign, referrer, prompt_version, model,
+             ip_hash, user_agent)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+        ).bind(
           id,
           createdAt,
           JSON.stringify(body.answers),
@@ -123,14 +130,26 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
           "v0.1-mock",
           "mock",
           ipHash,
-          ua.slice(0, 500)
+          ua
         )
-        .run();
+      );
+
+      body.answers.forEach((a, i) => {
+        const { text, choice, length } = splitAnswer(a);
+        stmts.push(
+          env.DB.prepare(
+            `INSERT INTO audit_answers (audit_id, question_num, text_answer, choice, answer_length)
+             VALUES (?, ?, ?, ?, ?)`
+          ).bind(id, i + 1, text, choice, length)
+        );
+      });
+
+      // Cloudflare D1: batch() runs statements atomically in one round-trip.
+      await env.DB.batch(stmts);
+    } catch (e) {
+      console.error("D1 batch insert failed", e);
+      // Don't fail the user response — keep UX smooth. Warnings will show in Workers logs.
     }
-  } catch (e) {
-    // Don't break the user flow on storage error — return analysis anyway,
-    // log to Cloudflare Workers logs.
-    console.error("D1 insert failed", e);
   }
 
   return new Response(
