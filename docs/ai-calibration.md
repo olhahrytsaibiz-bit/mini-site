@@ -55,3 +55,35 @@ Improvement, but revealed a deeper issue — see v0.3 trigger.
 ## v0.1 — initial
 
 Initial prompt built from methodology document. Structured but over-verbose.
+
+---
+
+## v0.5 — 2026-XX-XX (methodology consolidation)
+
+### Trigger
+v0.4 introduced a 5-stage internal model but as a rigid checklist ("ознаки сформованості" x3 per stage). Also proposed splitting internal into 5 integer fields in the JSON schema. Before shipping the DB change, we consolidated the methodology.
+
+### Root decision
+The DB schema evolves LATER. The methodology evolves NOW. Do one at a time. Ship the reasoning-first prompt with the same JSON contract, then evolve DB after MVP calibration on real users.
+
+### Changes vs v0.4
+1. Tighter definition of "фінансова система" — "система готових фінансових рішень для різних життєвих ситуацій". More concrete, action-oriented.
+2. Explicit 4-step reasoning procedure BEFORE writing the analysis (analyze holistically → apply model → find what's missing → explain causally).
+3. Internal model condensed: one line per stage instead of three checklist markers. Reduces the risk of GPT slipping into checklist mode.
+4. Added explicit ban on stage names as terms ("грошовий потік", "накопичення" as vocabulary) — the model exists to sharpen analysis, never to give a report.
+5. JSON schema INTENTIONALLY reverted to v0.3 shape (financial_stage enum). Per-stage integer fields will land post-MVP.
+
+### Hypothesis
+Analysis becomes more natural and diagnostic (less "checklist by hidden stages"). GPT is forced to speak in causal chains ("система робить X → результат Y"), not in labels.
+
+### What to look for in next live test
+- Does the reader hear a DIAGNOSIS ("твоя система вміє X, але не має Y — тому Z"), not a list?
+- Does GPT still slip into concrete-asset lists (real estate, crypto, courses)?
+- Does the model correctly identify the NEXT missing element, not just any missing element?
+
+### Post-MVP roadmap (parked, not lost)
+When we've calibrated on ~30-50 real users and the natural language output is good, we split `internal` into per-stage integer fields for analytics. That will require:
+- ALTER TABLE audits ADD COLUMN stage_cashflow INTEGER (+ 4 more);
+- Corresponding indexes;
+- Update code to read per-stage integers from the schema and dual-write.
+No changes to existing rows — old audits will just have NULL stage columns and be re-analyzable via stored answers.
