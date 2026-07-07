@@ -87,3 +87,35 @@ When we've calibrated on ~30-50 real users and the natural language output is go
 - Corresponding indexes;
 - Update code to read per-stage integers from the schema and dual-write.
 No changes to existing rows — old audits will just have NULL stage columns and be re-analyzable via stored answers.
+
+---
+
+## v0.6 — 2026-XX-XX (final baseline before real users)
+
+### Trigger
+v0.5 was correct in structure but we noticed reasoning could still drift into paraphrasing on some inputs. Before real-user testing we lock in the final baseline with explicit reasoning schemas and hard gates.
+
+### Decision to STOP calibrating
+No more prompt changes without real user data. Any further guessing pollutes the methodology. Ship v0.6 → collect ~30-50 live audits → then next revision based on evidence.
+
+### Changes vs v0.5
+1. Explicit gate: "внутрішня модель формується ДО написання". Before writing anything, GPT MUST first classify all 5 elements internally. This is stated as a hard order, not a suggestion.
+2. Added 5 concrete logical-schema examples ("особливість → безпосередній наслідок → фінансовий результат"), one per model element. These seed the causal-chain thinking with real templates while explicitly not being templates for the output text.
+3. Rules for incomplete/contradictory answers strengthened: contradiction can BE the insight, not a problem to avoid.
+4. Language/style consolidated into one compact section instead of scattered instructions.
+5. JSON schema unchanged from v0.5 — per-stage integers still parked.
+
+### Hypothesis
+Analysis becomes noticeably more diagnostic. Reader gets "твоя система робить X, тому Y" rather than "твоя система робить X" (implicit end). Reasoning gate reduces cases where GPT skips the model and jumps to paraphrasing.
+
+### What to look for in FIRST live users
+- Diagnostic voice vs summary voice: does the reader hear analysis or a mirror of their own answers?
+- Model discipline: any leaked stage names, level talk ("рівень"), or numbered stages?
+- Causal fidelity: does main_limitation follow the "особливість → наслідок → результат" shape?
+- Reader impact: does the person say "AI зрозумів щось, що я не проговорила" — the north-star response?
+
+### Next steps (product-level, NOT prompt-level)
+- Day 4: polish `/audit/result` UX (block timing, readability with long outputs, empty-state fallbacks).
+- Day 5: rate limiting via Cloudflare Turnstile + IP throttle, cost cap on OPENAI_API_KEY.
+- Day 6: end-to-end analytics events (start_audit / complete_audit / view_result / click_next_step) in GA4 + Meta Pixel.
+- Then: collect real users. Only THEN return to this document with v0.7+ evidence-based revisions.
